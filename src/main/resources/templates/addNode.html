@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Node</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<h1>Add New Node</h1>
+<form th:action="@{/admin/add}" th:object="${node}" method="post" class="form-container">
+    <label for="message">Message:</label>
+    <input type="text" id="message" name="message" class="form-input" th:value="${node.message}" required>
+    <label for="messageName">Message Name:</label>
+    <input type="text" id="messageName" name="messageName" class="form-input" th:value="${node.messageName}">
+    <label for="nodeType">Node Type:</label>
+    <select id="nodeType" name="nodeType" class="form-input">
+        <option value="NORMAL_NODE" th:selected="${node.nodeType == T(com.chat.bot.entity.ConversationNode$NodeType).NORMAL_NODE}">Normal</option>
+        <option value="FIRST_NODE" th:selected="${node.nodeType == T(com.chat.bot.entity.ConversationNode$NodeType).FIRST_NODE}">First Node</option>
+        <option value="INVALID_NODE" th:selected="${node.nodeType == T(com.chat.bot.entity.ConversationNode$NodeType).INVALID_NODE}">Invalid Node</option>
+        <option value="END_NODE" th:selected="${node.nodeType == T(com.chat.bot.entity.ConversationNode$NodeType).END_NODE}">End Node</option>
+    </select>
+    <button type="submit" class="btn">Save</button>
+    <div th:if="${error}" class="error">
+        <p th:text="${error}"></p>
+    </div>
+</form>
+</body>
+</html>

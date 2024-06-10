@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<h1>Admin Panel</h1>
+<a href="/admin/add" class="btn add-node-btn">Add New Node</a>
+<a href="/admin/deleteAll" class="btn delete-all-btn" onclick="return confirm('Are you sure you want to delete all nodes?')">Delete All Nodes</a>
+<table class="table-container">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Message</th>
+    <th>Message Name</th>
+    <th>Node Type</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="node : ${nodes}">
+    <td th:text="${node.id}"></td>
+    <td th:text="${node.message}"></td>
+    <td th:text="${node.messageName}"></td>
+    <td th:text="${node.nodeType}"></td>
+    <td>
+      <a th:href="@{/admin/edit/{id}(id=${node.id})}" class="action-link">Edit</a>
+      <a th:if="${node.responses.size() > 0}" th:href="@{/admin/responses/{id}(id=${node.id})}" class="action-link">Edit Responses</a>
+      <a th:if="${node.responses.size() == 0}" th:href="@{/admin/responses/add/{id}(id=${node.id})}" class="action-link">Add Responses</a>
+      <a th:if="${node.deletable}" th:href="@{/admin/delete/{id}(id=${node.id})}" class="action-link">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div th:if="${error}" class="error">
+  <p th:text="${error}"></p>
+</div>
+</body>
+</html>
