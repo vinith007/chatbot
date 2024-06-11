@@ -13,15 +13,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+/**
+ * Controller class for managing chatbot interactions.
+ */
 @Controller
 @RequestMapping("/chatbot")
-public class ChatbotController {
+public class ChatBotController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ChatbotController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ChatBotController.class);
 
     @Autowired
     private ChatbotService chatbotService;
 
+    /**
+     * Starts a new chat session and initializes the conversation.
+     *
+     * @param model the model to which attributes are added
+     * @return the name of the view to be rendered
+     */
     @GetMapping
     public String startChat(Model model) {
         logger.info("Starting chat...");
@@ -32,6 +41,13 @@ public class ChatbotController {
         return "chatbot";
     }
 
+    /**
+     * Handles the user's response, updates the conversation, and returns the updated chat messages.
+     *
+     * @param userResponse the user's response
+     * @param model        the model to which attributes are added
+     * @return the name of the view to be rendered
+     */
     @PostMapping("/respond")
     public String handleResponse(@RequestParam("response") String userResponse, Model model) {
         logger.info("Received user response: {}", userResponse);
