@@ -262,8 +262,8 @@ public class AdminService {
      */
     private ConversationNode createDefaultInvalidNode() {
         ConversationNode invalidNode = new ConversationNode();
-        invalidNode.setMessage(ChatMessages.INVALID_RESPONSE.getMessage());
-        invalidNode.setMessageName(ChatMessages.INVALID_RESPONSE_NAME.getMessage());
+        invalidNode.setMessage(ChatMessages.INVALID_MESSAGE.getMessage());
+        invalidNode.setMessageName(ChatMessages.INVALID_MESSAGE_NAME.getMessage());
         invalidNode.setDeletable(false);
         invalidNode.setNodeType(NodeType.INVALID_NODE);
         repository.save(invalidNode);

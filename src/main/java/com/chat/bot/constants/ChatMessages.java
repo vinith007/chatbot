@@ -5,8 +5,11 @@ package com.chat.bot.constants;
  */
 public enum ChatMessages {
 
-    INVALID_RESPONSE("I'm sorry, I didn't understand your response. Return to the last request."),
-    INVALID_RESPONSE_NAME("Invalid Message"),
+    INVALID_MESSAGE("I'm sorry, I didn't understand your response. Return to the last request."),
+    INVALID_MESSAGE_NAME("Invalid Message"),
+
+    END_MESSAGE("Thanks for chatting!!"),
+    END_MESSAGE_NAME("End Message"),
     USER("User"),
     YOU("You: "),
     CHATBOT("Chatbot");

@@ -141,10 +141,15 @@ public class ChatbotService {
             logger.info("Transitioned to end node with responses: {}", currentNode.getMessage());
             logTransaction(currentNode.getMessage(), ChatMessages.CHATBOT.getMessage());
         } else {
-            currentNode = endNodes.stream().findFirst()
-                    .orElseThrow(() -> new IllegalStateException("No end node found"));
+            if (endNodes.isEmpty()) {
+                currentNode = createEndNode();
+                logger.info("No end node found, created a default end node: {}", currentNode.getMessage());
+            } else {
+                currentNode = endNodes.stream().findFirst()
+                        .orElseThrow(() -> new IllegalStateException("No end node found"));
+                logger.info("Transitioned to final end node: {}", currentNode.getMessage());
+            }
             conversationHistory.add(currentNode.getMessage());
-            logger.info("Transitioned to final end node: {}", currentNode.getMessage());
             logTransaction(currentNode.getMessage(), ChatMessages.CHATBOT.getMessage());
         }
     }
@@ -155,7 +160,7 @@ public class ChatbotService {
      * @param message the message content.
      * @param sender  the sender of the message.
      */
-    private void logTransaction(String message, String sender) {
+    public void logTransaction(String message, String sender) {
         ChatTransaction transaction = new ChatTransaction();
         transaction.setSessionId(sessionId.get());
         transaction.setMessage(message);
@@ -172,12 +177,23 @@ public class ChatbotService {
      */
     private ConversationNode createDefaultInvalidNode() {
         ConversationNode invalidNode = new ConversationNode();
-        invalidNode.setMessage(ChatMessages.INVALID_RESPONSE.getMessage());
-        invalidNode.setMessageName(ChatMessages.INVALID_RESPONSE_NAME.getMessage());
+        invalidNode.setMessage(ChatMessages.INVALID_MESSAGE.getMessage());
+        invalidNode.setMessageName(ChatMessages.INVALID_MESSAGE_NAME.getMessage());
         invalidNode.setDeletable(false);
         invalidNode.setNodeType(NodeType.INVALID_NODE);
         nodeRepository.save(invalidNode);
         logger.info("Created default invalid node.");
         return invalidNode;
+    }
+
+    private ConversationNode createEndNode() {
+        ConversationNode endNode = new ConversationNode();
+        endNode.setMessage(ChatMessages.END_MESSAGE.getMessage());
+        endNode.setMessageName(ChatMessages.END_MESSAGE_NAME.getMessage());
+        endNode.setDeletable(false);
+        endNode.setNodeType(NodeType.END_NODE);
+        nodeRepository.save(endNode);
+        logger.info("Created default invalid node.");
+        return endNode;
     }
 }
