@@ -16,12 +16,21 @@ import org.springframework.ui.Model;
  */
 public class CustomErrorControllerTest {
 
+    /**
+     * HttpServletRequest
+     */
     @Mock
     private HttpServletRequest request;
 
+    /**
+     * Model
+     */
     @Mock
     private Model model;
 
+    /**
+     * CustomErrorController
+     */
     @InjectMocks
     private CustomErrorController customErrorController;
 

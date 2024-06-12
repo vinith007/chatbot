@@ -27,6 +27,7 @@ public class ChatbotService {
 
     /** Logger instance for logging. */
     private static final Logger logger = LoggerFactory.getLogger(ChatbotService.class);
+
     /** Repository for conversation nodes. */
     private final ConversationNodeRepository nodeRepository;
 
@@ -175,7 +176,7 @@ public class ChatbotService {
      *
      * @return the created invalid node.
      */
-    private ConversationNode createDefaultInvalidNode() {
+    public ConversationNode createDefaultInvalidNode() {
         ConversationNode invalidNode = new ConversationNode();
         invalidNode.setMessage(ChatMessages.INVALID_MESSAGE.getMessage());
         invalidNode.setMessageName(ChatMessages.INVALID_MESSAGE_NAME.getMessage());

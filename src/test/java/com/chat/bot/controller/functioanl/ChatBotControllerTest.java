@@ -1,4 +1,4 @@
-package com.chat.bot.controller.functional;
+package com.chat.bot.controller.functioanl;
 
 import com.chat.bot.service.ChatbotService;
 import io.restassured.RestAssured;

@@ -1,4 +1,4 @@
-package com.chat.bot.controller.functional;
+package com.chat.bot.controller.functioanl;
 
 import com.chat.bot.entity.ConversationNode;
 import com.chat.bot.service.AdminService;
@@ -26,9 +26,15 @@ import static org.mockito.Mockito.*;
 @ActiveProfiles("test")
 public class AdminControllerTest {
 
+    /**
+     * port
+     */
     @LocalServerPort
     private int port;
 
+    /**
+     * Admin service
+     */
     @MockBean
     private AdminService adminService;
 

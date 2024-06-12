@@ -20,15 +20,27 @@ import java.util.List;
  */
 class AdminControllerTest {
 
+    /**
+     * Admin service.
+     */
     @Mock
     private AdminService adminService;
 
+    /**
+     * Model
+     */
     @Mock
     private Model model;
 
+    /**
+     * Admin controller
+     */
     @InjectMocks
     private AdminController adminController;
 
+    /**
+     * Setup
+     */
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);

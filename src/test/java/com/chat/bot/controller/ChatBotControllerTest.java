@@ -19,12 +19,21 @@ import java.util.List;
  */
 class ChatBotControllerTest {
 
+    /**
+     * ChatbotService
+     */
     @Mock
     private ChatbotService chatbotService;
 
+    /**
+     * Model
+     */
     @Mock
     private Model model;
 
+    /**
+     * ChatBotController
+     */
     @InjectMocks
     private ChatBotController chatBotController;
 
